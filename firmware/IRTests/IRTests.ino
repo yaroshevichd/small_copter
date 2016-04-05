@@ -1,48 +1,43 @@
 #include <Servo.h>
 #include <SharpIR.h>
 
-Servo servo1;
-SharpIR ir1(15, 1080);
-SharpIR ir2(16, 1080);
+#define SERVO_X (0)
+#define SERVO_Y (1)
+
+#define SENSOR_FRONT (0)
+#define SENSOR_BACK (1)
+
+Servo servos[] = {Servo()};
+SharpIR range_sensors[] = {SharpIR(A1, 1080), SharpIR(A2, 1080)};
 
 void setup() {
-  servo1.attach(14, 1000, 2000);
+  servos[SERVO_X].attach(A0, 1000, 2000);
   Serial.begin(9600);
   Serial.println("Ready");
 }
 
 void loop() {
   
-  static int v = 0;
+  static int degrees = 0;
   static bool clockwise = true;
-  
-  servo1.write(v);
-  v = v + (clockwise ? 1 : -1);
-  if (v == 180) clockwise = false;
-  else if (v == 0) clockwise = true;
+
+//  unsigned long millis();
+
+  servos[SERVO_X].write(degrees);
+  float radians = degrees / 2.0 * PI / 180.0; // servo allows to move from 0-90 only
+  degrees = degrees + (clockwise ? 1 : -1);
+  if (degrees == 180) clockwise = false;
+  else if (degrees == 0) clockwise = true;
   
 //  int dis1 = ir1.distance();
-  int dis2 = ir2.distance();
+  int distance_mm = range_sensors[SENSOR_BACK].distance();
+  float x = distance_mm * sin(radians);
+  float y = distance_mm * cos(radians);
   
 //  Serial.print("Distance 1: ");
 //  Serial.println(dis1);
   Serial.print("Distance 2: ");
-  Serial.println(dis2);
-  
-//  static int v = 0;
-//
-//  if ( Serial.available()) {
-//    char ch = Serial.read();
-//
-//    switch(ch) {
-//      case '0'...'9':
-//        v = v * 10 + ch - '0';
-//        break;
-//      case 's':
-//        servo1.write(v);
-//        Serial.println(v);
-//        v = 0;
-//        break;
-//    }
-//  }
+  Serial.print(x);
+  Serial.print("; ");
+  Serial.println(y);
 }

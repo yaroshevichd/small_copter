@@ -1,1 +1,1 @@
-# 7cm quadrocopter from scratch
+# small (indoor) quadrocopter from scratch

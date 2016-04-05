@@ -77,7 +77,7 @@ void SharpIR::sort(int a[], int size) {
 int SharpIR::distance() {
 
     int ir_val[NB_SAMPLE];
-    int distanceCM;
+    int distanceMM = 0;
 
 
     for (int i=0; i<NB_SAMPLE; i++){
@@ -93,9 +93,9 @@ int SharpIR::distance() {
         
         // Different expressions required as the Photon has 12 bit ADCs vs 10 bit for Arduinos
         #ifdef ARDUINO
-          distanceCM = 27.728 * pow(map(ir_val[NB_SAMPLE / 2], 0, 1023, 0, 5000)/1000.0, -1.2045);
+          distanceMM = 2.7728 * pow(map(ir_val[NB_SAMPLE / 2], 0, 1023, 0, 5000)/1000.0, -1.2045);
         #elif defined(SPARK)
-          distanceCM = 27.728 * pow(map(ir_val[NB_SAMPLE / 2], 0, 4095, 0, 5000)/1000.0, -1.2045);
+          distanceMM = 2.7728 * pow(map(ir_val[NB_SAMPLE / 2], 0, 4095, 0, 5000)/1000.0, -1.2045);
         #endif
 
     } else if (_model==20150){
@@ -105,13 +105,13 @@ int SharpIR::distance() {
         
         // Different expressions required as the Photon has 12 bit ADCs vs 10 bit for Arduinos
         #ifdef ARDUINO
-          distanceCM = 60.374 * pow(map(ir_val[NB_SAMPLE / 2], 0, 1023, 0, 5000)/1000.0, -1.16);
+          distanceMM = 6.0374 * pow(map(ir_val[NB_SAMPLE / 2], 0, 1023, 0, 5000)/1000.0, -1.16);
         #elif defined(SPARK)
-          distanceCM = 60.374 * pow(map(ir_val[NB_SAMPLE / 2], 0, 4095, 0, 5000)/1000.0, -1.16);
+          distanceMM = 6.0374 * pow(map(ir_val[NB_SAMPLE / 2], 0, 4095, 0, 5000)/1000.0, -1.16);
         #endif
     }
 
-    return distanceCM;
+    return distanceMM;
 }
 
 
