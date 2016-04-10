@@ -20,24 +20,20 @@ void loop() {
   
   static int degrees = 0;
   static bool clockwise = true;
-
-//  unsigned long millis();
-
+  
   servos[SERVO_X].write(degrees);
-  float radians = degrees / 2.0 * PI / 180.0; // servo allows to move from 0-90 only
-  degrees = degrees + (clockwise ? 1 : -1);
-  if (degrees == 180) clockwise = false;
+  
+  degrees += (clockwise ? 1 : -1);
+  if (degrees == 179) clockwise = false;
   else if (degrees == 0) clockwise = true;
   
-//  int dis1 = ir1.distance();
-  int distance_mm = range_sensors[SENSOR_BACK].distance();
-  float x = distance_mm * sin(radians);
-  float y = distance_mm * cos(radians);
-  
-//  Serial.print("Distance 1: ");
-//  Serial.println(dis1);
-  Serial.print("Distance 2: ");
-  Serial.print(x);
+  unsigned long before = millis();
+  float distance_mm = range_sensors[SENSOR_FRONT].distance();
+  unsigned long after = millis();
+
+//  Serial.print(after - before);  
+//  Serial.print("; ");
+  Serial.print(degrees);
   Serial.print("; ");
-  Serial.println(y);
+  Serial.println(distance_mm);
 }
