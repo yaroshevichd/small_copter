@@ -1,25 +1,27 @@
 EAGLE AutoRouter Statistics:
 
-Job           : E:/work/copter_bare/small_copter/design_pcb/copter.brd
+Job           : e:/work/copter_bare/small_copter/design_pcb/copter.brd
 
-Start at      : 20:11:18 (10.04.2016)
-End at        : 20:12:35 (10.04.2016)
-Elapsed time  : 00:00:22
+Start at      : 20:06:51 (08.05.2016)
+End at        : 20:08:38 (08.05.2016)
+Elapsed time  : 00:01:46
 
-Signals       :    40   RoutingGrid: 6.25 mil  Layers: 2
-Connections   :   138   predefined:  0 ( 0 Vias )
+Signals       :    44   RoutingGrid: 1 mil  Layers: 2
+Connections   :   143   predefined:  0 ( 0 Vias )
 
-Router memory :   339264
+Router memory :   12196824
 
-Passname          :    Busses     Route Optimize1 Optimize2 Optimize3 Optimize4
+Job has been interrupted!
 
-Time per pass     :  00:00:00  00:00:18  00:00:01  00:00:01  00:00:01  00:00:01
-Number of Ripups  :         0       158         0         0         0         0
-max. Level        :         0         3         0         0         0         0
-max. Total        :         0        54         0         0         0         0
+Passname          :    Busses     Route
 
-Routed            :        23       138       138       138       138       138
-Vias              :         0       115        78        71        65        65
-Resolution        :    16.7 %   100.0 %   100.0 %   100.0 %   100.0 %   100.0 %
+Time per pass     :  00:00:02  00:01:44
+Number of Ripups  :         0        43
+max. Level        :         0         1
+max. Total        :         0        47
 
-Final             : 100.0% finished
+Routed            :        13       111
+Vias              :         0        48
+Resolution        :     9.1 %    77.6 %
+
+Final             : 66.4% finished
